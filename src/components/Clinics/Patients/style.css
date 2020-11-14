@@ -1,0 +1,8 @@
+
+.patients .fixed-top .search-form input{
+    width:10%;
+}
+
+.patients .fixed-top .search-form input.name{
+    width:20%;
+}

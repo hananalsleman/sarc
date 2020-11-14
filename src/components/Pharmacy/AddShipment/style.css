@@ -1,0 +1,24 @@
+.shipped-medicine .title{
+    font-size: 20px;
+}
+
+.shipped-medicine .medicine-table{
+    width: 100%;
+    padding-bottom: 10px;
+    background-color: #eee;
+    direction: rtl;
+}
+.shipped-medicine .medicine-table td{
+    text-align: center;
+    padding: 5px 0px;
+}
+
+.shipped-medicine .medicine-table .empty{
+    text-align: center;
+}
+
+.shipped-medicine .medicine-table i{
+    font-weight: bold;
+    cursor: pointer;
+}
+

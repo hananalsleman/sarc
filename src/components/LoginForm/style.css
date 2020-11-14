@@ -1,0 +1,95 @@
+.login{
+    height:100vh;
+    background-size: cover;
+}
+.login-background{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top:0;
+    left:0;
+    background-image: url('../../images/wallpaper-clinics.png');
+    background-size: 100% 100%;
+    filter: brightness(0.5);
+}
+.login .logo-img{
+    position: relative;
+    width:170px;
+}
+.login .logo-img .bg-blur{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.login img{
+    width:170px;
+    padding: 10px;
+    position: relative;
+    z-index: 10;
+}
+.login form{
+    margin-top: -50px;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 45px;
+    position: relative;
+    border-radius: 5px;
+}
+.login .bg-blur{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    filter:blur(1px);
+    z-index: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: -2px 5px 5px 1px rgba(168, 168, 168, 0.75);
+}
+.login form .elements {
+    z-index: 10;
+    position: relative;
+}
+.login h2{
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+.login .form-group{
+    margin-bottom: 0px;
+}
+.login input , .login button {
+    width: 90%;
+    font-size: 15px;
+}
+.login input {
+    border: none;
+    border-bottom: 2px solid #aeaeae;
+    padding: 7px;
+    padding-right:28px ;
+    margin-top : 10px ;
+    background: none;
+    background-size: 7%;
+    background-repeat: no-repeat;
+    background-position: right;
+    text-align: right;
+}
+.login input:first-of-type{
+    background-image: url('./user.png');
+}
+.login input[type="password"]{
+    background-image: url('./password.png');
+}
+.login input:focus {
+    border-bottom-color: #e61b23;
+    border-bottom-width:2px ;
+}
+.login button{
+    border:2px solid #e61b23;
+    padding: 8px;
+    margin-top : 10px ;
+    border-radius: 15px;
+    font-weight: bold;
+    color:#fff;
+}
+.login button:hover{
+    box-shadow: -2px 5px 5px 1px rgba(168, 168, 168, 0.75);
+}

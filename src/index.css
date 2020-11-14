@@ -1,0 +1,22 @@
+html ,body{
+    min-height: 100vh;
+}
+
+body{
+    background-color: rgb(216, 216, 218);
+}
+
+*{
+    box-sizing: border-box;
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+button{
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}

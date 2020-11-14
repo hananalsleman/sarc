@@ -1,0 +1,21 @@
+.charts-category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.charts-category .chart{
+    padding: 15px;
+    z-index: 0;
+    box-shadow: -2px 5px 5px 1px rgba(168, 168, 168, 0.75);
+    background-color: #f7f7f7;
+    flex-grow: 1;
+    flex-shrink: 2;
+    flex-basis: 20%;
+}
+.charts-category .chart .ReactChart{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.charts-category .chart .chart-label{
+    font-size: 22px;
+}

@@ -1,0 +1,53 @@
+
+.statistics .stat{
+    background-color: #6a6a69;
+    color:#fff;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: -2px 5px 5px 1px rgba(168, 168, 168, 0.75);
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 20%;
+}
+@media (max-width:768px){
+    .statistics .stat{
+        flex-basis: 40%;
+    }
+}
+.statistics .stat .stat-icon{
+    width: 40%;
+    height: 100%;
+    line-height: 50px;
+    padding:10%;
+}
+.statistics .stat i{
+    font-size: 40px;
+    color:#e61b23;
+}
+.statistics .stat .stat-text{
+    width: 60%;
+}
+.statistics .stat h3{
+    margin: 5px auto 8px auto;
+    font-size:30px;
+    padding-top:5%;
+}
+.statistics .rangeDate{
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    direction: rtl;
+    align-items:flex-end;
+}
+.statistics .rangeDate input{
+    margin-right: 10px;
+    padding: 6px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+.statistics .rangeDate label{
+    margin-left: 2em;
+}
