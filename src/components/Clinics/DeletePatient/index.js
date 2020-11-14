@@ -9,7 +9,7 @@ const DeletePatient = (props) => {
                 <div className="modal-content">
                     <div className="modal-header title-bar">
                         <h5 className="modal-title win-title">حذف مريض</h5>
-                        <button type="button" className="close" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -19,7 +19,7 @@ const DeletePatient = (props) => {
                         </div>
                         <div className="choices-btns">
                             <button className="btn save" onClick={props.delPatient} >حذف</button>
-                            <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
+                            <span className="btn cancel" data-dismiss="modal" aria-label="Close" >إلغاء</span>
                         </div>
                     </div>
                 </div>

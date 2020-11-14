@@ -51,7 +51,7 @@ const PreviewExam = (props) => {
         return clinic.clinic_name;
     }
     return (
-        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewExamWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
             { props.prev == true ? getExamInfo() :null}
             <div className="modal-dialog win-content modal-dialog-centered" role="document">
                 <div className="modal-content">

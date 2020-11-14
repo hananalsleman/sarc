@@ -186,11 +186,11 @@ class EditExam extends Component {
 
     render() {
         const props = this.props;
-        if (this.props.display === 'block') {
+        if (this.props.display) {
             var examination = this.state.exam;
             var selectedDiseases = this.state.selectedDiseases;
             return (
-                <div className="modal win" tabIndex="-1" role="dialog" id="addPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+                <div className="modal win" tabIndex="-1" role="dialog" id="editExamWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
                     <div className="modal-dialog win-content" role="document">
                         <div className="modal-content">
                             <div className="modal-header title-bar">

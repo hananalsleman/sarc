@@ -195,7 +195,7 @@ class WelcomePage extends Component {
                                         <label>{this.props.pharmacy_stock.length}</label>
                                         <label>دواء متوفر</label>
                                     </div>
-                                    <button className="btn add" data-toggle="modal" data-target="#addExamWin">شحن أدوية</button>
+                                    <button className="btn add" data-toggle="modal" data-target="#addShipmentWin">شحن أدوية</button>
                                 </div>
                                 <div className="action col-12 mb-lg-0 ">
                                     <div className="action-stat">

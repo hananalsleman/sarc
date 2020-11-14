@@ -24,12 +24,12 @@ class PreviewShippedMed extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+            <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewShipmentMedWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
                 <div className="modal-dialog win-content modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">
                             <h5 className="modal-title win-title">عرض معلومات دواء مشحون</h5>
-                            <button type="button" onClick={props.toggleDisplay} className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -66,7 +66,7 @@ class PreviewShippedMed extends Component {
                                     </div>
                                 </div>
                                 <div className="choices-btns">
-                                    <span className="btn cancel" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">إلغاء</span>
+                                    <span className="btn cancel" data-dismiss="modal" aria-label="Close">إلغاء</span>
                                 </div>
                             </div>
                         </div>

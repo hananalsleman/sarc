@@ -208,7 +208,7 @@ class AddShipment extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="modal win" tabIndex="-1" role="dialog" id="addPatientWin" aria-labelledby="addPatientWinTitle" aria-hidden="true"  >
+            <div className="modal win" tabIndex="-1" role="dialog" id="addShipmentWin" aria-labelledby="addPatientWinTitle" aria-hidden="true"  >
 
                 <div className="modal-dialog modal-dialog-centered win-content" role="document">
                     <div className="modal-content">

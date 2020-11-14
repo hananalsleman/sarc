@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './style.css';
+
 import AddPatient from '../AddPatient';
 import PreviewPatient from '../PreviewPatient';
 import EditPatient from '../EditPatient';
@@ -22,31 +22,9 @@ class Patients extends Component {
         search: { name: '', motherName: '', age: '', gender: '', birthplace: '', registerdate: '', nationality: '', phone: '' },
     }
 
-    toggleDisplayAdd = (e) => {
-        e.preventDefault();
+    toggleDisplayWin = (p) => {
         this.setState({
             ...this.state,
-            isDisplayedAdd: this.state.isDisplayedAdd === 'block' ? 'none' : 'block'
-        });
-    }
-    toggleDisplayPrev = (p) => {
-        this.setState({
-            ...this.state,
-            isDisplayedPrev: this.state.isDisplayedPrev === 'block' ? 'none' : 'block',
-            patient: p
-        });
-    }
-    toggleDisplayEdit = (p) => {
-        this.setState({
-            ...this.state,
-            isDisplayedEdit: this.state.isDisplayedEdit === 'block' ? 'none' : 'block',
-            patient: p
-        });
-    }
-    toggleDisplayDelete = (p) => {
-        this.setState({
-            ...this.state,
-            isDisplayedDelete: this.state.isDisplayedDelete === 'block' ? 'none' : 'block',
             patient: p
         });
     }
@@ -114,10 +92,10 @@ class Patients extends Component {
         var patients = this.state.patients;
         return (
             <div className="tab-body">
-                <AddPatient toggleDisplay={this.toggleDisplayAdd} display={this.state.isDisplayedAdd} addPatient={this.addPatient} />
-                <DeletePatient toggleDisplay={this.toggleDisplayDelete} display={this.state.isDisplayedDelete} patient={this.state.patient} delPatient={this.delPatient} />
-                <EditPatient toggleDisplay={this.toggleDisplayEdit} display={this.state.isDisplayedEdit} patient={this.state.patient} editPatient={this.editPatient} />
-                <PreviewPatient toggleDisplay={this.toggleDisplayPrev} display={this.state.isDisplayedPrev} patient={this.state.patient} />
+                <AddPatient toggleDisplay={this.toggleDisplayWin} addPatient={this.addPatient} />
+                <DeletePatient toggleDisplay={this.toggleDisplayWin}  patient={this.state.patient} delPatient={this.delPatient} />
+                <EditPatient toggleDisplay={this.toggleDisplayWin} patient={this.state.patient} editPatient={this.editPatient} />
+                <PreviewPatient toggleDisplay={this.toggleDisplayWin} patient={this.state.patient} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">
@@ -167,9 +145,9 @@ class Patients extends Component {
                                         <td scope="col" className="dis-none">{patient.registerdate}</td>
                                         <td scope="col" className="dis-none">{patient.phone}</td>
                                         <td scope="col" >
-                                            <button onClick={() => this.toggleDisplayEdit(patient)} className="action"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.toggleDisplayDelete(patient)} className="action" data-toggle="modal" data-target="#deletePatientWin"><i className="fa fa-remove"></i></button>
-                                            <button onClick={() => this.toggleDisplayPrev(patient)} className="action"><i className="fa fa-eye"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(patient)}  data-toggle="modal" data-target="#editPatientWin" className="action"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(patient)} data-toggle="modal" data-target="#deletePatientWin" className="action" ><i className="fa fa-remove"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(patient)} data-toggle="modal" data-target="#previewPatientWin" className="action"><i className="fa fa-eye"></i></button>
                                         </td>
                                     </tr >
                                 )

@@ -5,7 +5,7 @@ const PreviewPatient = (props) => {
 
 
     return (
-        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewPatientWin"  aria-labelledby="addPatientWinTitle" aria-hidden="true">
             <div className="modal-dialog win-content modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header title-bar">
@@ -78,7 +78,7 @@ const PreviewPatient = (props) => {
                                 </div>
                             </div>
                             <div className="choices-btns">
-                                <span className="btn cancel" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">إلغاء</span>
+                                <span className="btn cancel" data-dismiss="modal" aria-label="Close">إلغاء</span>
                             </div>
                         </div>
 

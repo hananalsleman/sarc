@@ -36,7 +36,7 @@ class AddMedicine extends Component {
     }
     form = (props) => {
         return (
-            <form className="form-content" id="addPatientForm" onSubmit={props.handleSubmit}>
+            <form className="form-content" id="addMedicineForm" onSubmit={props.handleSubmit}>
                 <div className="cols-container row">
                     <div className="col-12  col-lg-4">
                         <div className="field row">
@@ -80,7 +80,7 @@ class AddMedicine extends Component {
                 </div>
                 <div className="choices-btns">
                     <button type="submit" className="btn save">حفظ</button>
-                    <span className="btn cancel" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">إلغاء</span>
+                    <span className="btn cancel" data-dismiss="modal" aria-label="Close">إلغاء</span>
                 </div>
             </form>
         )
@@ -88,7 +88,7 @@ class AddMedicine extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="modal win" tabIndex="-1" role="dialog" id="addPatientWin"  aria-labelledby="addPatientWinTitle" aria-hidden="true">
+            <div className="modal win" tabIndex="-1" role="dialog" id="addMedicineWin"  aria-labelledby="addPatientWinTitle" aria-hidden="true">
 
                 <div className="modal-dialog win-content modal-dialog-centered" role="document">
                     <div className="modal-content">

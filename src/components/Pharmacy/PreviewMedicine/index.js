@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const PreviewMedicine = (props) => {
 
     return (
-        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewMedicineWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
             <div className="modal-dialog win-content modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header title-bar">

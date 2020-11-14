@@ -152,9 +152,9 @@ class Moves extends Component {
                                         <td scope="col" className="dis-none">{move.prescrition_id}</td>
                                         <td scope="col" className="dis-none">{this.getCountOutMedicines(move.movement_id)}</td>
                                         <td scope="col" >
-                                            <button onClick={() => this.toggleDisplayEdit(move)} className="action"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.toggleDisplayDelete(move)} className="action" data-toggle="modal" data-target="#deletePatientWin"><i className="fa fa-remove"></i></button>
-                                            <button onClick={() => this.toggleDisplayPrev(move)} className="action"><i className="fa fa-eye"></i></button>
+                                            <button onClick={() => this.toggleDisplayEdit(move)} className="action" data-toggle="modal" data-target="#editOutMovementWin"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.toggleDisplayDelete(move)} className="action" data-toggle="modal" data-target="#deleteOutMovementWin"><i className="fa fa-remove"></i></button>
+                                            <button onClick={() => this.toggleDisplayPrev(move)} className="action" data-toggle="modal" data-target="#previewOutMovementWin"><i className="fa fa-eye"></i></button>
                                         </td>
                                     </tr >
                                 )

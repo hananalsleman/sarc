@@ -43,32 +43,17 @@ class Visits extends Component {
         return patient.firstName + '  ' + patient.fatherName + '  ' + patient.lastName;
     }
 
-    toggleDisplayAdd = (e) => {
-        e.preventDefault();
-        this.setState({
-            ...this.state,
-            isDisplayedAdd: this.state.isDisplayedAdd === 'block' ? 'none' : 'block'
-        });
-    }
-    toggleDisplayPrev = (exam) => {
+    /*toggleDisplayWin = (exam) => {
         this.setState({
             ...this.state,
             isDisplayedPrev: this.state.isDisplayedPrev === 'block' ? 'none' : 'block',
             prev: this.state.prev === false ? true : false,
             exam: exam
         });
-    }
-    toggleDisplayEdit = (exam) => {
+    }*/
+    toggleDisplayWin = (exam) => {
         this.setState({
             ...this.state,
-            isDisplayedEdit: this.state.isDisplayedEdit === 'block' ? 'none' : 'block',
-            exam: exam
-        });
-    }
-    toggleDisplayDelete = (exam) => {
-        this.setState({
-            ...this.state,
-            isDisplayedDelete: this.state.isDisplayedDelete === 'block' ? 'none' : 'block',
             exam: exam
         });
     }
@@ -134,10 +119,10 @@ class Visits extends Component {
         return (
             <div className="tab-body visits ">
 
-                <AddExam toggleDisplay={this.toggleDisplayAdd} display={this.state.isDisplayedAdd} addExam={this.addExam} />
-                <DeleteExam toggleDisplay={this.toggleDisplayDelete} display={this.state.isDisplayedDelete} exam={this.state.exam} delExam={this.delExam} />
-                <PreviewExam toggleDisplay={this.toggleDisplayPrev} display={this.state.isDisplayedPrev} examination={this.state.exam} prev={this.state.prev} />
-                <EditExam toggleDisplay={this.toggleDisplayEdit} display={this.state.isDisplayedEdit} editExam={this.editExam} examination={this.state.exam} />
+                <AddExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedAdd} addExam={this.addExam} />
+                <DeleteExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedDelete} exam={this.state.exam} delExam={this.delExam} />
+                <PreviewExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedPrev} examination={this.state.exam} prev={this.state.prev} />
+                <EditExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedEdit} editExam={this.editExam} examination={this.state.exam} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">
@@ -146,7 +131,7 @@ class Visits extends Component {
                                 زيارات
                             </div>
                             <div className="pull-left p-0 col-6 col-md-4 order-2 order-md-3">
-                                <button className="btn pl-3 pr-3 add" data-toggle="modal" data-target="#addPatientWin">إضافة معاينة</button>
+                                <button className="btn pl-3 pr-3 add" data-toggle="modal" data-target="#addExamWin">إضافة معاينة</button>
                                 <button className="btn search" data-toggle="collapse" href="#collapseFormSearch" role="button" aria-expanded="false" aria-controls="collapseFormSearch" ><i className="fa fa-search"></i></button>
                             </div>
 
@@ -186,9 +171,9 @@ class Visits extends Component {
                                         <td scope="col" className="dis-none">{exam.doctor_id != '' ? this.getDoctor(exam.doctor_id).name : ''}</td>
                                         <td scope="col" className="dis-none">{exam.prescrition_id}</td>
                                         <td scope="col" >
-                                            <button onClick={() => this.toggleDisplayEdit(exam)} className="action"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.toggleDisplayDelete(exam)} className="action" data-toggle="modal" data-target="#deletePatientWin"><i className="fa fa-remove"></i></button>
-                                            <button onClick={() => this.toggleDisplayPrev(exam)} className="action"><i className="fa fa-eye"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(exam)} className="action" data-toggle="modal" data-target="#editExamWin"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(exam)} className="action" data-toggle="modal" data-target="#deleteExamWin"><i className="fa fa-remove"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(exam)} className="action" data-toggle="modal" data-target="#previewExamWin"><i className="fa fa-eye"></i></button>
                                         </td>
                                     </tr >
                                 )

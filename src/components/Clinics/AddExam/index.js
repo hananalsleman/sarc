@@ -191,7 +191,7 @@ class AddExam extends Component {
         const props = this.props;
         return (
 
-            <div className="modal win" tabIndex="-1" role="dialog" id="addExamWin" style={{ display: props.display }} aria-labelledby="addExamWinTitle" aria-hidden="true">
+            <div className="modal win" tabIndex="-1" role="dialog" id="addExamWin" aria-labelledby="addExamWinTitle" aria-hidden="true">
                 <div className="modal-dialog win-content" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">

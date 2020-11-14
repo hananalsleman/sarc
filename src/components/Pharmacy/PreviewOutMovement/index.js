@@ -44,12 +44,12 @@ class PreviewOutMovement extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+            <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewOutMovementWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
                 <div className="modal-dialog win-content modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">
                             <h5 className="modal-title win-title">عرض معلومات إخراج أدوية </h5>
-                            <button type="button" onClick={props.toggleDisplay} className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -106,7 +106,7 @@ class PreviewOutMovement extends Component {
                                 </div>
 
                                 <div className="choices-btns">
-                                    <span className="btn cancel" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">إلغاء</span>
+                                    <span className="btn cancel" data-dismiss="modal" aria-label="Close">إلغاء</span>
                                 </div>
                             </div>
                         </div>
@@ -130,75 +130,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(PreviewOutMovement);
-
-/*
-
-<div className="AddOutMovement   win" style={{ display: props.display }} >
-                <div className="win-container center">
-
-                    <div className="title-bar">
-                        <label className="win-title">إخراج أدوية</label>
-                        <button onClick={props.toggleDisplay} ><i className="fa fa-remove"></i></button>
-                    </div>
-
-                    <div className="win-body">
-
-                        <form className="form-content" id="form-addMove">
-                            <div className="cols-container">
-                                <div className="col">
-                                    <div className="field"><label>نوع الاخراج</label>
-                                        <input  disabled value={this.props.movement_out_types[this.props.move.movement_type]} type="text" />
-                                    </div><br />
-                                </div>
-                                <div className="col">
-                                    <div className="field"><label>تاريخ الإخراج</label><input  disabled value={props.move.movement_date} type="text" /></div><br />
-                                </div>
-                                <div className="col">
-                                    <div className="field"><label> رقم الوصفة</label><input disabled value={props.move.prescrition_id} type="text" /></div><br />
-                                </div>
-                            </div>
-                            <div className="outed-medicine">
-
-                                <label className="title">الأدوية المخرجة</label>
-                                <table className="medicine-table">
-                                    <thead>
-                                        <tr>
-                                            <th>اسم الدواء</th>
-                                            <th> كود</th>
-                                            <th> تاريخ الشحن</th>
-                                            <th>الكمية المتوفرة</th>
-                                            <th>الكمية المخرجة</th>
-                                            <th> - </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            this.state.selectedMedicines.length > 0 ?
-                                            this.state.selectedMedicines.map( (medicine,index) =>
-                                                <tr key={index}>
-                                                    <td>{(this.getMedicine(medicine.medicine_id)).medicine_name}</td>
-                                                    <td>{(this.getMedicine(medicine.medicine_id)).code}</td>
-                                                    <td>{(this.getShipment(medicine.shipment_id)).shipment_date}</td>
-                                                    <td>{(this.getPharamcyStore(medicine.medicine_id,medicine.shipment_id))}</td>
-                                                    <td>{medicine.quantity}</td>
-                                                </tr>
-                                             ):<tr >
-                                                    <td colSpan="6" className="empty">لا يوجد ادوية محددة</td>
-                                                </tr>
-                                        }
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <div className="choices-btns">
-                                <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-
-*/

@@ -125,7 +125,7 @@ class EditPatient extends Component {
                 </div>
                 <div className="choices-btns">
                     <button type="submit" className="btn save">حفظ</button>
-                    <span className="btn cancel" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">إلغاء</span>
+                    <span className="btn cancel" data-dismiss="modal" aria-label="Close">إلغاء</span>
                 </div>
             </form>
         )
@@ -134,7 +134,7 @@ class EditPatient extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="modal win" tabIndex="-1" role="dialog" id="addPatientWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
+            <div className="modal win" tabIndex="-1" role="dialog" id="addPatientWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
                 <div className="modal-dialog win-content" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">

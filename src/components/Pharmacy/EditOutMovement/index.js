@@ -204,13 +204,13 @@ class EditOutMovement extends Component {
         return (
 
 
-            <div className="modal win"  style={{ display: props.display }}  tabIndex="-1" role="dialog" id="addPatientWin" aria-labelledby="addPatientWinTitle" aria-hidden="true"  >
+            <div className="modal win" tabIndex="-1" role="dialog" id="editOutMovementWin" aria-labelledby="addPatientWinTitle" aria-hidden="true"  >
 
                 <div className="modal-dialog modal-dialog-centered win-content" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">
                             <h5 className="modal-title win-title">إخراج أدوية</h5>
-                            <button type="button" onClick={props.toggleDisplay} className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -248,93 +248,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(EditOutMovement);
-
-
-/*
-
-
-
-            <div className="AddOutMovement   win" style={{ display: props.display }} >
-                <div className="win-container center">
-
-                    <div className="title-bar">
-                        <label className="win-title">إخراج أدوية</label>
-                        <button onClick={props.toggleDisplay} ><i className="fa fa-remove"></i></button>
-                    </div>
-
-                    <div className="win-body">
-
-                        <form className="form-content" id="form-addMove">
-                            <div className="cols-container">
-                                <div className="col">
-                                    <div className="field"><label>نوع الاخراج</label>
-                                        <input  disabled value={this.props.movement_out_types[this.props.move.movement_type]} type="text" />
-                                    </div><br />
-                                </div>
-                                <div className="col">
-                                    <div className="field"><label>تاريخ الإخراج</label><input  disabled value={props.move.movement_date} type="text" /></div><br />
-                                </div>
-                                <div className="col">
-                                    <div className="field"><label> رقم الوصفة</label><input disabled value={props.move.prescrition_id} type="text" /></div><br />
-                                </div>
-                            </div>
-                            <div className="outed-medicine">
-
-                                <label className="title">الأدوية المخرجة</label>
-                                <table className="medicine-table">
-                                    <thead>
-                                        <tr>
-                                            <th>اسم الدواء</th>
-                                            <th> كود</th>
-                                            <th> تاريخ الشحن</th>
-                                            <th>الكمية المتوفرة</th>
-                                            <th>الكمية المخرجة</th>
-                                            <th> - </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            this.state.selectedMedicines.length > 0 ?
-                                            this.state.selectedMedicines.map( (medicine,index) =>
-                                                <tr key={index}>
-                                                    <td>{(this.getMedicine(medicine.medicine_id)).medicine_name}</td>
-                                                    <td>{(this.getMedicine(medicine.medicine_id)).code}</td>
-                                                    <td>{(this.getShipment(medicine.shipment_id)).shipment_date}</td>
-                                                    <td>{(this.getPharamcyStore(medicine.medicine_id,medicine.shipment_id))}</td>
-                                                    <td>{medicine.quantity}</td>
-                                                    <td><i onClick={ () => this.delMed(index)} className="fa fa-remove"></i></td>
-                                                </tr>
-                                             ):<tr >
-                                                    <td colSpan="6" className="empty">لا يوجد ادوية محددة</td>
-                                                </tr>
-                                        }
-
-                                    </tbody>
-                                </table>
-                                <div className="shipMedicine" id="form-addMed">
-                                    <select onChange={this.changeValMed}  name="medicine" className="outedMedicine" >
-                                        <option>اسم الدواء</option>
-                                        {
-                                            this.props.pharmacy_stock.map( (medicine,index) =>
-                                                <option key={index} value={[medicine.medicine_id ,medicine.shipment_id]} >
-                                                   {(this.getMedicine(medicine.medicine_id)).medicine_name}
-                                                   تاريخ الشحن {(this.getShipment(medicine.shipment_id)).shipment_date}
-                                                </option>
-                                            )
-                                        }
-                                    </select>
-                                    <input  name="quantity" onChange={this.changeValMed} type="number" placeholder="الكمية"/>
-                                    <button onClick={ this.addMed }>اضافة دواء</button>
-                                </div>
-                            </div>
-                            <div className="choices-btns">
-                                <button onClick={ this.editMove } className="btn save">حفظ</button>
-                                <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-*/

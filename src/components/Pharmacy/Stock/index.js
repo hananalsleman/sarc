@@ -21,31 +21,9 @@ class Stock extends Component {
         search: { id: 1, name: '', code: '', company: '', quantity: '', calibre: '', active_material: '', form: '' },
     }
 
-    toggleDisplayAdd = (e) => {
-        e.preventDefault();
+    toggleDisplayWin = (m) => {
         this.setState({
             ...this.state,
-            isDisplayedAdd: this.state.isDisplayedAdd === 'block' ? 'none' : 'block'
-        });
-    }
-    toggleDisplayPrev = (m) => {
-        this.setState({
-            ...this.state,
-            isDisplayedPrev: this.state.isDisplayedPrev === 'block' ? 'none' : 'block',
-            medicine: m
-        });
-    }
-    toggleDisplayEdit = (m) => {
-        this.setState({
-            ...this.state,
-            isDisplayedEdit: this.state.isDisplayedEdit === 'block' ? 'none' : 'block',
-            medicine: m
-        });
-    }
-    toggleDisplayDelete = (m) => {
-        this.setState({
-            ...this.state,
-            isDisplayedDelete: this.state.isDisplayedDelete === 'block' ? 'none' : 'block',
             medicine: m
         });
     }
@@ -111,10 +89,10 @@ class Stock extends Component {
         return (
             <div className="stock tab-body">
 
-                <AddShipment toggleDisplay={this.toggleDisplayAdd} display={this.state.isDisplayedAdd} addShipment={this.addShipment} />
-                <DeleteShippedMed toggleDisplay={this.toggleDisplayDelete} display={this.state.isDisplayedDelete} medicine={this.state.medicine} delShippedMed={this.delShippedMed} />
-                <EditShippedMed toggleDisplay={this.toggleDisplayEdit} display={this.state.isDisplayedEdit} medicine={this.state.medicine} editShippedMed={this.editShippedMed} />
-                <PreviewShippedMed toggleDisplay={this.toggleDisplayPrev} display={this.state.isDisplayedPrev} medicine={this.state.medicine} />
+                <AddShipment toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedAdd} addShipment={this.addShipment} />
+                <DeleteShippedMed toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedDelete} medicine={this.state.medicine} delShippedMed={this.delShippedMed} />
+                <EditShippedMed toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedEdit} medicine={this.state.medicine} editShippedMed={this.editShippedMed} />
+                <PreviewShippedMed toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedPrev} medicine={this.state.medicine} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">
@@ -123,7 +101,7 @@ class Stock extends Component {
                                 المستودع
                             </div>
                             <div className="pull-left p-0 col-6 col-md-4 order-2 order-md-3">
-                                <button className="btn pl-3 pr-3 add" data-toggle="modal" data-target="#addPatientWin">شحن ادوية</button>
+                                <button className="btn pl-3 pr-3 add" data-toggle="modal" data-target="#addShipmentWin">شحن ادوية</button>
                                 <button className="btn search" data-toggle="collapse" href="#collapseFormSearch" role="button" aria-expanded="false" aria-controls="collapseFormSearch" ><i className="fa fa-search"></i></button>
                             </div>
                         </div>
@@ -162,9 +140,9 @@ class Stock extends Component {
                                         <td scope="col" className="dis-none">{medicine.current_quantity}</td>
                                         <td scope="col" className="dis-none">{medicine.quantity}</td>
                                         <td scope="col" >
-                                            <button onClick={() => this.toggleDisplayEdit(medicine)} className="action"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.toggleDisplayDelete(medicine)} className="action" data-toggle="modal" data-target="#deletePatientWin"><i className="fa fa-remove"></i></button>
-                                            <button onClick={() => this.toggleDisplayPrev(medicine)} className="action"><i className="fa fa-eye"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(medicine)} className="action" data-toggle="modal" data-target="#editShipmentMedWin"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(medicine)} className="action" data-toggle="modal" data-target="#deleteShipmentMedWin"><i className="fa fa-remove"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(medicine)} className="action" data-toggle="modal" data-target="#previewShipmentMedWin"><i className="fa fa-eye"></i></button>
                                         </td>
                                     </tr >
                                 )
