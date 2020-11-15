@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <Fragment>
             <nav className="d-lg-none navbar navbar-expand-md bg-dark navbar-dark">
-                <a className="navbar-brand h-100" href="/clinics"><h1 className="my-auto d-inline-block">
+                <a className="navbar-brand h-100" href="/pharmacy"><h1 className="my-auto d-inline-block">
                     <img className="my-auto col-3 col-sm-3 col-md-3 img-fluid" src={logo} /> <span className="d-inline-block my-auto">SARC</span></h1></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span className="navbar-toggler-icon"></span>
@@ -23,13 +23,16 @@ const Home = () => {
                 <div className="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul className="navbar-nav">
                         <li className="nav-item text-right">
-                            <NavLink to="/clinics/patients" className="nav-link" activeClassName="active">المرضى</NavLink>
+                            <NavLink to="/pharmacy/stock" className="nav-link" activeClassName="active">المستودع</NavLink>
                         </li>
                         <li className="nav-item text-right">
-                            <NavLink to="/clinics/visits" className="nav-link" activeClassName="active">زيارات</NavLink>
+                            <NavLink to="/pharmacy/medicines" className="nav-link" activeClassName="active">الأدوية</NavLink>
                         </li>
                         <li className="nav-item text-right">
-                            <NavLink to="/clinics/statistics" className="nav-link" activeClassName="active">إحصائيات</NavLink>
+                            <NavLink to="/pharmacy/moves" className="nav-link" activeClassName="active">عمليات</NavLink>
+                        </li>
+                        <li className="nav-item text-right">
+                            <NavLink to="/pharmacy/statistics" className="nav-link" activeClassName="active">إحصائيات</NavLink>
                         </li>
                         <li className="nav-item text-right">
                             <NavLink to="/" exact className="nav-link" activeClassName="active"> الخروج</NavLink>
