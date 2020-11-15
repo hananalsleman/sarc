@@ -9,49 +9,15 @@ import PreviewOutMovement from '../PreviewOutMovement';
 class Moves extends Component {
 
     state = {
-        isDisplayedAdd: 'none',
-        isDisplayedPrev: 'none',
-        isDisplayedEdit: 'none',
-        isDisplayedDelete: 'none',
-        isDisplaySearch: 'none',
         fixedTopHeight: '7em',
         move: {},
         search: { name: '', motherName: '', age: '', gender: '', birthplace: '', registerdate: '', nationality: '', phone: '' },
     }
 
-    toggleDisplayAdd = (e) => {
-        e.preventDefault();
+    toggleDisplayWin = (m) => {
         this.setState({
             ...this.state,
-            isDisplayedAdd: this.state.isDisplayedAdd === 'block' ? 'none' : 'block',
-        });
-    }
-    toggleDisplayPrev = (m) => {
-        this.setState({
-            ...this.state,
-            isDisplayedPrev: this.state.isDisplayedPrev === 'block' ? 'none' : 'block',
             move: m
-        });
-    }
-    toggleDisplayEdit = (m) => {
-        this.setState({
-            ...this.state,
-            isDisplayedEdit: this.state.isDisplayedEdit === 'block' ? 'none' : 'block',
-            move: m
-        });
-    }
-    toggleDisplayDelete = (m) => {
-        this.setState({
-            ...this.state,
-            isDisplayedDelete: this.state.isDisplayedDelete === 'block' ? 'none' : 'block',
-            move: m
-        });
-    }
-    toggleDisplaySearch = () => {
-        this.setState({
-            ...this.state,
-            isDisplaySearch: this.state.isDisplaySearch === 'block' ? 'none' : 'block',
-            fixedTopHeight: this.state.isDisplaySearch === 'block' ? '7em' : '10.5em'
         });
     }
 
@@ -106,10 +72,10 @@ class Moves extends Component {
         var patients = this.state.patients;
         return (
             <div className="moves tab-body">
-                <AddOutMovement toggleDisplay={this.toggleDisplayAdd} display={this.state.isDisplayedAdd} addMove={this.addMove} />
-                <DeleteOutMovement toggleDisplay={this.toggleDisplayDelete} display={this.state.isDisplayedDelete} move={this.state.move} delMove={this.delMove} />
-                <EditOutMovement toggleDisplay={this.toggleDisplayEdit} display={this.state.isDisplayedEdit} move={this.state.move} editMove={this.editMove} />
-                <PreviewOutMovement toggleDisplay={this.toggleDisplayPrev} display={this.state.isDisplayedPrev} move={this.state.move} />
+                <AddOutMovement addMove={this.addMove} />
+                <DeleteOutMovement move={this.state.move} delMove={this.delMove} />
+                <EditOutMovement move={this.state.move} editMove={this.editMove} />
+                <PreviewOutMovement move={this.state.move} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">
@@ -152,9 +118,9 @@ class Moves extends Component {
                                         <td scope="col" className="dis-none">{move.prescrition_id}</td>
                                         <td scope="col" className="dis-none">{this.getCountOutMedicines(move.movement_id)}</td>
                                         <td scope="col" >
-                                            <button onClick={() => this.toggleDisplayEdit(move)} className="action" data-toggle="modal" data-target="#editOutMovementWin"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.toggleDisplayDelete(move)} className="action" data-toggle="modal" data-target="#deleteOutMovementWin"><i className="fa fa-remove"></i></button>
-                                            <button onClick={() => this.toggleDisplayPrev(move)} className="action" data-toggle="modal" data-target="#previewOutMovementWin"><i className="fa fa-eye"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(move)} className="action" data-toggle="modal" data-target="#editOutMovementWin"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(move)} className="action" data-toggle="modal" data-target="#deleteOutMovementWin"><i className="fa fa-remove"></i></button>
+                                            <button onClick={() => this.toggleDisplayWin(move)} className="action" data-toggle="modal" data-target="#previewOutMovementWin"><i className="fa fa-eye"></i></button>
                                         </td>
                                     </tr >
                                 )

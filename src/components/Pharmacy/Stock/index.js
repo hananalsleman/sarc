@@ -9,10 +9,6 @@ import PreviewShippedMed from '../PreviewShippedMed';
 class Stock extends Component {
 
     state = {
-        isDisplayedAdd: 'none',
-        isDisplayedPrev: 'none',
-        isDisplayedEdit: 'none',
-        isDisplayedDelete: 'none',
         isDisplaySearch: 'none',
         fixedTopHeight: '7em',
         medicines: this.props.medicines,
@@ -89,10 +85,10 @@ class Stock extends Component {
         return (
             <div className="stock tab-body">
 
-                <AddShipment toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedAdd} addShipment={this.addShipment} />
-                <DeleteShippedMed toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedDelete} medicine={this.state.medicine} delShippedMed={this.delShippedMed} />
-                <EditShippedMed toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedEdit} medicine={this.state.medicine} editShippedMed={this.editShippedMed} />
-                <PreviewShippedMed toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedPrev} medicine={this.state.medicine} />
+                <AddShipment addShipment={this.addShipment} />
+                <DeleteShippedMed medicine={this.state.medicine} delShippedMed={this.delShippedMed} />
+                <EditShippedMed medicine={this.state.medicine} editShippedMed={this.editShippedMed} />
+                <PreviewShippedMed  medicine={this.state.medicine} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">

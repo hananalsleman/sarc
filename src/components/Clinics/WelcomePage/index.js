@@ -13,8 +13,6 @@ class WelcomePage extends Component {
 
 
     state = {
-        isDisplayedAddPatient: 'none',
-        isDisplayedAddExam: 'none',
         selectedDiseases: [],
         patient: { id: '', firstName: '', lastName: '', fatherName: '', motherName: '', age: '', gender: '', birthdate: '', birthplace: '', registerdate: '', nationality: '', phone: '' },
         initialPatient: { id: 1, firstName: '', lastName: '', fatherName: '', motherName: '', age: '', gender: '', birthdate: '', birthplace: '', registerdate: '', nationality: '', phone: '' },
@@ -250,8 +248,8 @@ class WelcomePage extends Component {
         }
         return (
             <div className="welcomePage tab-body">
-                <AddPatient toggleDisplay={this.toggleDisplayAddPatient} display={this.state.isDisplayedAddPatient} addPatient={this.addPatient} />
-                <AddExam toggleDisplay={this.toggleDisplayAddExam} display={this.state.isDisplayedAddExam} addExam={this.addExam} />
+                <AddPatient addPatient={this.addPatient} />
+                <AddExam addExam={this.addExam} />
 
                 <div className="welcome-top ">
                     <Calendar className="calendar d-block col-12 col-lg-4" />

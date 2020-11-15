@@ -36,7 +36,8 @@ const PreviewExam = (props) => {
             ...props.examination,
             clinic_id: (props.examination.doctor_id != '' ? clinic.clinic_id : ''),
             patientName,
-            patientId: visit.person_id
+            patientId: visit.person_id,
+            examination_date : getVisit(examination.visit_id).visit_date
         }
     }
     const getNameDoctor = (id) => {
@@ -51,8 +52,8 @@ const PreviewExam = (props) => {
         return clinic.clinic_name;
     }
     return (
-        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewExamWin" style={{ display: props.display }} aria-labelledby="addPatientWinTitle" aria-hidden="true">
-            { props.prev == true ? getExamInfo() :null}
+        <div className="modal win win-preview" tabIndex="-1" role="dialog" id="previewExamWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
+            { props.examination.examination_id !== '' ? getExamInfo() :null}
             <div className="modal-dialog win-content modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header title-bar">
@@ -73,7 +74,7 @@ const PreviewExam = (props) => {
                                         <label className="w-50 mainColor font-weight-bold">{examination.patientName}</label>
                                     </div>
                                     <div className="field row"><label className="w-50">تاريخ المعاينة</label>
-                                        <label className="w-50 mainColor font-weight-bold">{props.prev == true ? getVisit(examination.visit_id).visit_date : ''} </label>
+                                        <label className="w-50 mainColor font-weight-bold">{examination.examination_date} </label>
                                     </div>
                                     <div className="field row"><label className="w-50">العيادة</label>
                                         <label className="w-50 mainColor font-weight-bold">{getNameClinic(examination.clinic_id)}</label>
@@ -131,63 +132,3 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps, null)(PreviewExam);
-
-
-
-/*
-<div className="win-preview win" style={{display:props.display}} >
-            { props.prev == true ? getExamInfo() :null}
-            <div className="win-container center">
-                <div className="title-bar">
-                    <label className="win-title">عرض بيانات معاينة</label>
-                    <button onClick={props.toggleDisplay} ><i className="fa fa-remove"></i></button>
-                </div>
-
-
-                <div className="win-body">
-
-                    <div className="form-content">
-                        <div className="cols-container">
-                            <div className="col">
-                                    <div className="field"><label>رقم المريض</label><input defaultValue={examination.patientId} disabled  type="text" /></div><br />
-                                    <div className="field"><label>اسم المريض</label><input  defaultValue={examination.patientName} disabled  type="text" /></div><br />
-                                    <div className="field"><label> تاريخ المعاينة</label><input  defaultValue={props.prev == true ? getVisit(examination.visit_id).visit_date : ''}  disabled type="text" /></div><br/>
-                                    <div className="field"><label>العيادة</label>
-                                        <input  name="clinicId" disabled value={getNameClinic(examination.clinic_id)} />
-                                    </div><br />
-                                    <div className="field"><label>الدكتور</label>
-                                        <input value={getNameDoctor(props.examination.doctor_id)} disabled />
-                                    </div><br />
-                                    <div className="field"><label>رقم الوصفة</label><input defaultValue={props.examination.prescrition_id}  disabled  type="text" /></div><br />
-                                </div>
-                            <div className="col">
-
-                                <div className="field"><label>التشخيص</label>
-                                </div><br />
-                                <div className="list">
-                                    {
-                                    props.diagnose.filter(diagnose => diagnose.examination_id == examination.examination_id ).length > 0
-                                    ? props.diagnose.filter(diagnose => diagnose.examination_id == examination.examination_id ).map( disease =>
-                                        <div className="row" key={disease.disease_id} >
-                                            <label>{getDiseaseName(disease.disease_id).disease_name}</label>
-                                        </div>
-                                    ) : <div className="row empty"> لا يوجد امراض محددة </div> }
-
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div className="field"><label> ملاحظات</label><input defaultValue={examination.note} disabled  type="text" /></div><br />
-                            </div>
-                        </div>
-                        <div className="choices-btns">
-                            <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-*/

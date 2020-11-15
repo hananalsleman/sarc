@@ -9,10 +9,6 @@ import PreviewMedicine from '../PreviewMedicine';
 class Medecines extends Component {
 
     state = {
-        isDisplayedAdd : 'none',
-        isDisplayedPrev : 'none',
-        isDisplayedEdit : 'none',
-        isDisplayedDelete : 'none',
         isDisplaySearch : 'none',
         fixedTopHeight : '7em',
         medicines : this.props.medicines,
@@ -77,10 +73,10 @@ class Medecines extends Component {
         var medicines = this.state.medicines;
         return (
             <div className="medicines tab-body">
-                <AddMedicine toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedAdd}  addMedicine={this.addMedicine} />
-                <DeleteMedicine toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedDelete} medicine={this.state.medicine} delMedicine={this.delMedicine}/>
-                <EditMedicine toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedEdit} medicine={this.state.medicine} editMedicine={this.editMedicine} />
-                <PreviewMedicine toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedPrev} medicine={this.state.medicine}/>
+                <AddMedicine   addMedicine={this.addMedicine} />
+                <DeleteMedicine  medicine={this.state.medicine} delMedicine={this.delMedicine}/>
+                <EditMedicine  medicine={this.state.medicine} editMedicine={this.editMedicine} />
+                <PreviewMedicine  medicine={this.state.medicine}/>
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">

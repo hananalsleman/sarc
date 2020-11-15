@@ -4,15 +4,10 @@ import { connect } from 'react-redux';
 import AddExam from '../AddExam';
 import DeleteExam from '../DeleteExam';
 import EditExam from '../EditExam';
-
 import PreviewExam from '../PreviewExam';
 
 class Visits extends Component {
     state = {
-        isDisplayedAdd: 'none',
-        isDisplayedPrev: 'none',
-        isDisplayedEdit: 'none',
-        isDisplayedDelete: 'none',
         exam: { examination_id: 1, visit_id: 2, doctor_id: 2, prescrition_id: '', clinic_id: 1, patientName: '', patientId: '', note: '' },
         examination: this.props.examination,
         isDisplaySearch: 'none',
@@ -42,15 +37,6 @@ class Visits extends Component {
         if (patient.firstName == '' || patient.fatherName == '' || patient.lastName == '') return '';
         return patient.firstName + '  ' + patient.fatherName + '  ' + patient.lastName;
     }
-
-    /*toggleDisplayWin = (exam) => {
-        this.setState({
-            ...this.state,
-            isDisplayedPrev: this.state.isDisplayedPrev === 'block' ? 'none' : 'block',
-            prev: this.state.prev === false ? true : false,
-            exam: exam
-        });
-    }*/
     toggleDisplayWin = (exam) => {
         this.setState({
             ...this.state,
@@ -119,10 +105,10 @@ class Visits extends Component {
         return (
             <div className="tab-body visits ">
 
-                <AddExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedAdd} addExam={this.addExam} />
-                <DeleteExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedDelete} exam={this.state.exam} delExam={this.delExam} />
-                <PreviewExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedPrev} examination={this.state.exam} prev={this.state.prev} />
-                <EditExam toggleDisplay={this.toggleDisplayWin} display={this.state.isDisplayedEdit} editExam={this.editExam} examination={this.state.exam} />
+                <AddExam  addExam={this.addExam} />
+                <DeleteExam exam={this.state.exam} delExam={this.delExam} />
+                <PreviewExam  examination={this.state.exam} prev={this.state.prev} />
+                <EditExam  editExam={this.editExam} examination={this.state.exam} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">

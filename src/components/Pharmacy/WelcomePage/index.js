@@ -16,20 +16,6 @@ class WelcomePage extends Component {
         selectedDiseases: [],
     }
 
-    toggleDisplayAddMove = (e) => {
-        e.preventDefault();
-        this.setState({
-            ...this.state,
-            isDisplayedAddMove: this.state.isDisplayedAddMove === 'block' ? 'none' : 'block'
-        });
-    }
-    toggleDisplayAddShip = (e) => {
-        e.preventDefault();
-        this.setState({
-            ...this.state,
-            isDisplayedAddShip: this.state.isDisplayedAddShip === 'block' ? 'none' : 'block'
-        });
-    }
 
     addMove = (newMove, medicines) => {
         this.props.addMove(newMove, medicines);
@@ -168,8 +154,8 @@ class WelcomePage extends Component {
         }
         return (
             <div className="welcomePage pharmacy tab-body">
-                <AddShipment toggleDisplay={this.toggleDisplayAddShip} display={this.state.isDisplayedAddShip} addShipment={this.addShipment} />
-                <AddOutMovement toggleDisplay={this.toggleDisplayAddMove} display={this.state.isDisplayedAddMove} addMove={this.addMove} />
+                <AddShipment addShipment={this.addShipment} />
+                <AddOutMovement addMove={this.addMove} />
                 <div className="welcome-top ">
                     <Calendar className="calendar d-block col-12 col-lg-4" />
                     <div className="welcome-speech d-block col-12 col-lg-8">

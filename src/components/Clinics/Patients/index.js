@@ -5,16 +5,10 @@ import AddPatient from '../AddPatient';
 import PreviewPatient from '../PreviewPatient';
 import EditPatient from '../EditPatient';
 import DeletePatient from '../DeletePatient';
-import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 class Patients extends Component {
 
     state = {
-        isDisplayedAdd: 'none',
-        isDisplayedPrev: 'none',
-        isDisplayedEdit: 'none',
-        isDisplayedDelete: 'none',
-        isDisplaySearch: 'none',
         fixedTopHeight: '7em',
         patients: this.props.patients,
         patient: { id: '', firstName: '', lastName: '', fatherName: '', motherName: '', age: '', gender: '', birthdate: '', birthplace: '', registerdate: '', nationality: '', phone: '' },
@@ -92,10 +86,10 @@ class Patients extends Component {
         var patients = this.state.patients;
         return (
             <div className="tab-body">
-                <AddPatient toggleDisplay={this.toggleDisplayWin} addPatient={this.addPatient} />
-                <DeletePatient toggleDisplay={this.toggleDisplayWin}  patient={this.state.patient} delPatient={this.delPatient} />
-                <EditPatient toggleDisplay={this.toggleDisplayWin} patient={this.state.patient} editPatient={this.editPatient} />
-                <PreviewPatient toggleDisplay={this.toggleDisplayWin} patient={this.state.patient} />
+                <AddPatient  addPatient={this.addPatient} />
+                <DeletePatient   patient={this.state.patient} delPatient={this.delPatient} />
+                <EditPatient  patient={this.state.patient} editPatient={this.editPatient} />
+                <PreviewPatient  patient={this.state.patient} />
 
                 <div className="fixed-tp col-12 col-lg-10">
                     <div className="titlebar-content mt-2 mt-lg-0 row p-3 mx-auto">
@@ -179,28 +173,3 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Patients);
-
-/*
- <form className="search-form col-12" style={{ display: this.state.isDisplaySearch }}>
-                            <input className="search-input name" type="text" onChange={this.search} placeholder="الاسم" name="name" />
-                            <input className="search-input" type="text" onChange={this.search} placeholder="اسم الام" name="motherName" />
-                            <input className="search-input" type="text" onChange={this.search} placeholder="العمر" name="age" />
-                            <select className="search-input" type="text" onChange={this.search} placeholder="الحنس" name="gender" >
-                                <option value="1">ذكر</option>
-                                <option value="1">أنثى</option>
-                            </select>
-                            <select className="search-input" onChange={this.search} placeholder="الجنسية" name="nationality" >
-                                <option value="1">سوري</option>
-                            </select>
-                            <input className="search-input" onChange={this.search} type="text" placeholder="مكان الولادة" name="birthplace" />
-                            <input className="search-input" onChange={this.search} type="date" placeholder="تاريخ التسجيل" name="registerdate" />
-                            <input className="search-input" onChange={this.search} type="text" placeholder=" الهاتف" name="phone" />
-                            <i className="fa fa-search search-input" />
-                        </form>
-*/
-
-
-/*
-
-
-*/

@@ -134,7 +134,7 @@ class EditPatient extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="modal win" tabIndex="-1" role="dialog" id="addPatientWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
+            <div className="modal win" tabIndex="-1" role="dialog" id="editPatientWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
                 <div className="modal-dialog win-content" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">

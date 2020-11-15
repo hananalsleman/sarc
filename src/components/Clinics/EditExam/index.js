@@ -153,7 +153,7 @@ class EditExam extends Component {
                     </div>
                     <div className="col-12  col-lg-4">
                         <div className="field row"><label>التشخيص</label>
-                            <Field id="diagnose" name="diagnose" component="select"  onChange={this.addDisease}>
+                            <Field id="diagnose" name="diagnose" component="select" onChange={this.addDisease}>
                                 {this.props.diseases.map(disease =>
                                     <option value={disease.disease_id} key={disease.disease_id} >
                                         {disease.disease_name}
@@ -186,44 +186,40 @@ class EditExam extends Component {
 
     render() {
         const props = this.props;
-        if (this.props.display) {
-            var examination = this.state.exam;
-            var selectedDiseases = this.state.selectedDiseases;
-            return (
-                <div className="modal win" tabIndex="-1" role="dialog" id="editExamWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
-                    <div className="modal-dialog win-content" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header title-bar">
-                                <h5 className="modal-title win-title">تعديل مريض</h5>
-                                <button type="button" onClick={props.toggleDisplay} className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <Formik
-                                    enableReinitialize
-                                    initialValues={{
-                                        patientId: examination.patientId || '',
-                                        patientName: examination.patientName || '',
-                                        examdate: examination.examdate || '',
-                                        note: props.examination.note || '',
-                                        prescrition_id: props.examination.prescrition_id || '',
-                                        clinic_id: props.examination.clinic_id || '0',
-                                        doctor_id: props.examination.doctor_id || ''
-                                    }}
-                                    onSubmit={this.editExam}
-                                    render={this.form}
-                                    validationSchema={this.schema()}
-                                />
-                            </div>
+        var examination = this.state.exam;
+        var selectedDiseases = this.state.selectedDiseases;
+        return (
+            <div className="modal win" tabIndex="-1" role="dialog" id="editExamWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
+                <div className="modal-dialog win-content" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header title-bar">
+                            <h5 className="modal-title win-title">تعديل مريض</h5>
+                            <button type="button" onClick={props.toggleDisplay} className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <Formik
+                                enableReinitialize
+                                initialValues={{
+                                    patientId: examination.patientId || '',
+                                    patientName: examination.patientName || '',
+                                    examdate: examination.examdate || '',
+                                    note: props.examination.note || '',
+                                    prescrition_id: props.examination.prescrition_id || '',
+                                    clinic_id: props.examination.clinic_id || '0',
+                                    doctor_id: props.examination.doctor_id || ''
+                                }}
+                                onSubmit={this.editExam}
+                                render={this.form}
+                                validationSchema={this.schema()}
+                            />
                         </div>
                     </div>
                 </div>
-            )
-        }
-        else {
-            return <div></div>
-        }
+            </div>
+        )
+
     }
 }
 
