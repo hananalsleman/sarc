@@ -23,7 +23,7 @@ class WelcomePage extends Component {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.patients.map(patient => {
             if (parseInt((patient.registerdate).slice(5, 7)) === parseInt((new Date).getMonth() + 1) &&
-                parseInt((patient.registerdate).slice(0, 4)) == parseInt((new Date).getFullYear())) {
+                parseInt((patient.registerdate).slice(0, 4)) === parseInt((new Date).getFullYear())) {
 
                 if (patient.gender === '0') {
                     if (patient.age < 5)
@@ -54,8 +54,8 @@ class WelcomePage extends Component {
     getCounts_AgeGender_Patients = () => {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.patients.map(patient => {
-            var index = this.props.visits.findIndex(visit => (patient.id == visit.person_id));
-            if (index != -1) {
+            var index = this.props.visits.findIndex(visit => (patient.id === visit.person_id));
+            if (index !== -1) {
                 if (patient.gender === '0') {
                     if (patient.age < 5)
                         data[0][0]++;
@@ -254,13 +254,12 @@ class WelcomePage extends Component {
                 <div className="welcome-top ">
                     <Calendar className="calendar d-block col-12 col-lg-4" />
                     <div className="welcome-speech d-block col-12 col-lg-8">
-                        <img src={welcomeImage} className="welcomeImage" />
+                        <img src={welcomeImage} className="welcomeImage" alt="" />
                         <div className="title">
                             Welcome Back
                         </div>
                     </div>
                 </div>
-
 
                 <div className="welcome-actions">
                     <div className="actions d-block pl-lg-3 pr-lg-3 col-12 col-lg-3">

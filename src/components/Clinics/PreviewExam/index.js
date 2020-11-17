@@ -20,7 +20,7 @@ const PreviewExam = (props) => {
     }
     const getClinic = (id) => {
         var clinicInd = props.clinics.findIndex(x => x.clinic_id === id);
-        if (clinicInd == -1) return -1;
+        if (clinicInd === -1) return -1;
         return props.clinics[clinicInd];
     }
     const getPatientName = (visitId) => {
@@ -31,24 +31,24 @@ const PreviewExam = (props) => {
     const getExamInfo = () => {
         var visit = getVisit(props.examination.visit_id);
         var patientName = getPatientName(visit.visit_id);
-        var clinic = (props.examination.doctor_id != '' ? getClinic(props.examination.doctor_id) : '');
+        var clinic = (props.examination.doctor_id !== '' ? getClinic(props.examination.doctor_id) : '');
         examination = {
             ...props.examination,
-            clinic_id: (props.examination.doctor_id != '' ? clinic.clinic_id : ''),
+            clinic_id: (props.examination.doctor_id !== '' ? clinic.clinic_id : ''),
             patientName,
             patientId: visit.person_id,
             examination_date : getVisit(examination.visit_id).visit_date
         }
     }
     const getNameDoctor = (id) => {
-        var ind = props.doctors.findIndex(doctor => doctor.doctor_id == parseInt(id));
-        if (ind == -1)
+        var ind = props.doctors.findIndex(doctor => doctor.doctor_id === parseInt(id));
+        if (ind === -1)
             return '';
         return props.doctors[ind].name;
     }
     const getNameClinic = (id) => {
         var clinic = getClinic(id);
-        if (clinic == -1) return '';
+        if (clinic === -1) return '';
         return clinic.clinic_name;
     }
     return (
@@ -89,8 +89,8 @@ const PreviewExam = (props) => {
                                 <div className="col-12  col-lg-4">
                                     <div className="field row"><label className="w-50">التشخيص</label>
                                         <div className="list">
-                                            {props.diagnose.filter(diagnose => diagnose.examination_id == examination.examination_id).length > 0
-                                                ? props.diagnose.filter(diagnose => diagnose.examination_id == examination.examination_id).map(disease =>
+                                            {props.diagnose.filter(diagnose => diagnose.examination_id === examination.examination_id).length > 0
+                                                ? props.diagnose.filter(diagnose => diagnose.examination_id === examination.examination_id).map(disease =>
                                                     <div className="row" key={disease.disease_id} >
                                                         <label>{getDiseaseName(disease.disease_id).disease_name}</label>
                                                     </div>

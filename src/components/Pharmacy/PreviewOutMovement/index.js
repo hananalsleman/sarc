@@ -19,16 +19,16 @@ class PreviewOutMovement extends Component {
     }
 
     getMedicine = (medicine_id) => {
-        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id == parseInt(medicine_id));
+        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id === parseInt(medicine_id));
         return this.props.medicines[index];
     }
     getShipment = (id) => {
-        var index = this.props.shipment.findIndex(shipment => shipment.shipment_id == parseInt(id));
+        var index = this.props.shipment.findIndex(shipment => shipment.shipment_id === parseInt(id));
         return this.props.shipment[index];
     }
     getPharamcyStore = (medicine_id, shipment_id) => {
-        var index = this.props.pharmacy_stock.findIndex(medicine => medicine.medicine_id == parseInt(medicine_id) && medicine.shipment_id == shipment_id);
-        if (index == -1) return '';
+        var index = this.props.pharmacy_stock.findIndex(medicine => medicine.medicine_id === parseInt(medicine_id) && medicine.shipment_id === shipment_id);
+        if (index === -1) return '';
         return this.props.pharmacy_stock[index].current_quantity;
     }
 

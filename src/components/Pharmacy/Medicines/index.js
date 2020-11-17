@@ -37,14 +37,12 @@ class Medecines extends Component {
         this.props.addMedicine(newMedicine);
         this.setState({
             ...this.state,
-            isDisplayedAdd : this.state.isDisplayedAdd === 'block' ? 'none' : 'block',
             medicine : {}
         });
     }
     editMedicine = (m) => {
         this.props.editMedicine(m);
         this.setState({
-            isDisplayedEdit : this.state.isDisplayedEdit === 'block' ? 'none' : 'block',
             medicine:{}
         })
     }

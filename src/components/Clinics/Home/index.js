@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { connect } from 'react-redux';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 import Tab from '../Tab/index';
@@ -14,7 +14,7 @@ const Home = (props) => {
         <Fragment>
             <nav className="d-lg-none navbar navbar-expand-md bg-dark navbar-dark">
                 <a className="navbar-brand h-100" href="/clinics"><h1 className="my-auto d-inline-block">
-                    <img className="my-auto col-3 col-sm-3 col-md-3 img-fluid" src={logo} /> <span className="d-inline-block my-auto">SARC</span></h1></a>
+                    <img className="my-auto col-3 col-sm-3 col-md-3 img-fluid" alt="" src={logo} /> <span className="d-inline-block my-auto">SARC</span></h1></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span className="navbar-toggler-icon"></span>
                 </button>

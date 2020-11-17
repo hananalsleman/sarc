@@ -34,7 +34,7 @@ class Visits extends Component {
     getPatientName = (visitId) => {
         var visit = this.getVisit(visitId);
         var patient = this.getPatient(visit.person_id);
-        if (patient.firstName == '' || patient.fatherName == '' || patient.lastName == '') return '';
+        if (patient.firstName === '' || patient.fatherName === '' || patient.lastName === '') return '';
         return patient.firstName + '  ' + patient.fatherName + '  ' + patient.lastName;
     }
     toggleDisplayWin = (exam) => {
@@ -153,8 +153,8 @@ class Visits extends Component {
                                         <td scope="col" className="dis-none" >{this.getVisit(exam.visit_id).person_id}</td>
                                         <td scope="col" >{this.getPatientName(exam.visit_id)}</td>
                                         <td scope="col" className="dis-none">{this.getVisit(exam.visit_id).visit_date}</td>
-                                        <td scope="col" >{exam.doctor_id != '' ? this.getClinic(this.getDoctor(exam.doctor_id).clinic_id).clinic_name : ''}</td>
-                                        <td scope="col" className="dis-none">{exam.doctor_id != '' ? this.getDoctor(exam.doctor_id).name : ''}</td>
+                                        <td scope="col" >{exam.doctor_id !== '' ? this.getClinic(this.getDoctor(exam.doctor_id).clinic_id).clinic_name : ''}</td>
+                                        <td scope="col" className="dis-none">{exam.doctor_id !== '' ? this.getDoctor(exam.doctor_id).name : ''}</td>
                                         <td scope="col" className="dis-none">{exam.prescrition_id}</td>
                                         <td scope="col" >
                                             <button onClick={() => this.toggleDisplayWin(exam)} className="action" data-toggle="modal" data-target="#editExamWin"><i className="fa fa-edit"></i></button>

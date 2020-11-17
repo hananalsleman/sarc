@@ -12,13 +12,13 @@ class PreviewShippedMed extends Component {
         });
     }
     getMedicine = (id) => {
-        var ind = this.props.medicines.findIndex(med => med.medicine_id == id);
-        if (ind == -1) return ''
+        var ind = this.props.medicines.findIndex(med => med.medicine_id === id);
+        if (ind === -1) return ''
         return this.props.medicines[ind].medicine_name;
     }
     getShip = (id) => {
-        var ind = this.props.shipment.findIndex(ship => ship.shipment_id == id);
-        if (ind == -1) return '';
+        var ind = this.props.shipment.findIndex(ship => ship.shipment_id === id);
+        if (ind === -1) return '';
         return this.props.shipment[ind].shipment_date;
     }
     render() {

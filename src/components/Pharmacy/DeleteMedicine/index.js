@@ -5,7 +5,7 @@ const DeleteMedicine = (props) => {
 
     return (
 
-        <div className="modal win " tabIndex="-1" role="dialog" id="deleteMedicineWin" style={{ display: props.display }} aria-labelledby="deletePatientWinTitle" aria-hidden="true">
+        <div className="modal win " tabIndex="-1" role="dialog" id="deleteMedicineWin" aria-labelledby="deletePatientWinTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered win-content win-delete" role="document">
                 <div className="modal-content">
                     <div className="modal-header title-bar">

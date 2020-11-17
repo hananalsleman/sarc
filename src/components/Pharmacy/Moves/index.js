@@ -13,34 +13,28 @@ class Moves extends Component {
         move: {},
         search: { name: '', motherName: '', age: '', gender: '', birthplace: '', registerdate: '', nationality: '', phone: '' },
     }
-
     toggleDisplayWin = (m) => {
         this.setState({
             ...this.state,
             move: m
         });
     }
-
     delMove = () => {
         this.props.deleteMove(this.state.move);
         this.setState({
-            isDisplayedDelete: this.state.isDisplayedDelete === 'block' ? 'none' : 'block',
             move: {}
         });
     }
-
     addMove = (newMove, medicines) => {
         this.props.addMove(newMove, medicines);
         this.setState({
             ...this.state,
-            isDisplayedAdd: this.state.isDisplayedAdd === 'block' ? 'none' : 'block',
         });
     }
 
     editMove = (move, medicines) => {
         this.props.editMove(move, medicines);
         this.setState({
-            isDisplayedEdit: this.state.isDisplayedEdit === 'block' ? 'none' : 'block',
             move: {}
         })
     }
@@ -58,7 +52,7 @@ class Moves extends Component {
         );
     }
     getCountOutMedicines = (id) => {
-        return (this.props.medicine_out.filter(medicine => medicine.movement_id == id)).length;
+        return (this.props.medicine_out.filter(medicine => medicine.movement_id === id)).length;
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.patients !== nextProps.patients) {

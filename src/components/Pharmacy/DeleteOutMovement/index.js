@@ -16,7 +16,7 @@ const DeleteOutMovement = (props) => {
                         </button>
                     </div>
                     {
-                        (props.medicine_out.filter(medicine => medicine.movement_id == props.move.movement_id)).length === 0 ?
+                        (props.medicine_out.filter(medicine => medicine.movement_id === props.move.movement_id)).length === 0 ?
 
                             <div className="modal-body win-body-delete">
                                 <div className="pt-3 pb-3">

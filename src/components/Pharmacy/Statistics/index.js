@@ -13,35 +13,34 @@ class Statistics extends Component {
     }
     editDate = (e) => {
         this.setState({
-            [e.target.name]: e.target.value != '' ? Date.parse(e.target.value) : '',
+            [e.target.name]: e.target.value !== '' ? Date.parse(e.target.value) : '',
         });
 
     }
 
-
     getCountAvailableMedicine = () => {
         var count = (this.props.medicines.filter(medicine =>
-            (this.props.pharmacy_stock.filter(stock => stock.medicine_id == medicine.medicine_id && stock.current_quantity > 0)).length > 0
+            (this.props.pharmacy_stock.filter(stock => stock.medicine_id === medicine.medicine_id && stock.current_quantity > 0)).length > 0
         )).length;
         return count;
     }
     getCountOutMedicine = () => {
         var count = (this.props.medicines.filter(medicine =>
-            (this.props.medicine_out.filter(out => out.medicine_id == medicine.medicine_id)).length > 0
+            (this.props.medicine_out.filter(out => out.medicine_id === medicine.medicine_id)).length > 0
         )).length;
         return count;
     }
     getCounts_AgeGender_OutMovement = () => {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.pharmacy_movement_out.map(move => {
-            if (move.movement_type == 1 && (this.state.minDate != '' ? Date.parse(move.movement_date) > this.state.minDate : true)
-                && (this.state.maxDate != '' ? Date.parse(move.movement_date) < this.state.maxDate : true)
+            if (move.movement_type === 1 && (this.state.minDate !== '' ? Date.parse(move.movement_date) > this.state.minDate : true)
+                && (this.state.maxDate !== '' ? Date.parse(move.movement_date) < this.state.maxDate : true)
             ) {
-                var indEx = this.props.examination.findIndex(exam => (exam.prescrition_id == move.prescrition_id));
-                var indVisit = this.props.visits.findIndex(visit => (visit.visit_id == this.props.examination[indEx].visit_id));
-                var index = this.props.patients.findIndex(patient => (patient.id == this.props.visits[indVisit].person_id));
+                var indEx = this.props.examination.findIndex(exam => (exam.prescrition_id === move.prescrition_id));
+                var indVisit = this.props.visits.findIndex(visit => (visit.visit_id === this.props.examination[indEx].visit_id));
+                var index = this.props.patients.findIndex(patient => (patient.id === this.props.visits[indVisit].person_id));
                 var patient = this.props.patients[index];
-                if (index != -1) {
+                if (index !== -1) {
                     if (patient.gender === '0') {
                         if (patient.age < 5)
                             data[0][0]++;
@@ -78,8 +77,8 @@ class Statistics extends Component {
     getCount_Type_OutMovement = () => {
         var data = [0, 0, 0];
         this.props.pharmacy_movement_out.map(outMove => {
-            if ((this.state.minDate != '' ? Date.parse(outMove.movement_date) > this.state.minDate : true)
-                && (this.state.maxDate != '' ? Date.parse(outMove.movement_date) < this.state.maxDate : true))
+            if ((this.state.minDate !== '' ? Date.parse(outMove.movement_date) > this.state.minDate : true)
+                && (this.state.maxDate !== '' ? Date.parse(outMove.movement_date) < this.state.maxDate : true))
                 data[outMove.movement_type]++;
         });
         return data;
@@ -94,14 +93,14 @@ class Statistics extends Component {
             ]
         ]
         this.props.medicine_out.map(outMed => {
-            var move = this.props.pharmacy_movement_out[this.props.pharmacy_movement_out.findIndex(move => move.movement_id == outMed.movement_id)];
-            if (move.prescrition_id != '') {
+            var move = this.props.pharmacy_movement_out[this.props.pharmacy_movement_out.findIndex(move => move.movement_id === outMed.movement_id)];
+            if (move.prescrition_id !== '') {
                 var prescrition_id = move.prescrition_id;
-                var exam = this.props.examination[this.props.examination.findIndex(exam => exam.prescrition_id == prescrition_id)];
-                var visit = this.props.visits[this.props.visits.findIndex(visit => visit.visit_id == exam.visit_id)];
-                var person = this.props.patients[this.props.patients.findIndex(patient => patient.id == visit.person_id)];
+                var exam = this.props.examination[this.props.examination.findIndex(exam => exam.prescrition_id === prescrition_id)];
+                var visit = this.props.visits[this.props.visits.findIndex(visit => visit.visit_id === exam.visit_id)];
+                var person = this.props.patients[this.props.patients.findIndex(patient => patient.id === visit.person_id)];
                 var month = parseInt((move.movement_date).slice(5, 7));
-                var year = parseInt((move.movement_date).slice(0, 4));
+               /* var year = parseInt((move.movement_date).slice(0, 4)); */
                 var gender = parseInt(person.gender);
                 if (person.age < 5) {
                     data[gender][month][0]++;

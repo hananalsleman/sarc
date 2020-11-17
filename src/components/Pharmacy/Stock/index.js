@@ -69,7 +69,7 @@ class Stock extends Component {
     }
 
     getMedicine = (id) => {
-        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id == id);
+        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id === id);
         return this.props.medicines[index];
     }
     componentWillReceiveProps(nextProps) {
@@ -81,7 +81,6 @@ class Stock extends Component {
     }
 
     render() {
-        var medicines = this.state.medicines;
         return (
             <div className="stock tab-body">
 

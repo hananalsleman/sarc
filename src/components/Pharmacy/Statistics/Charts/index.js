@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Pie, Doughnut } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 
 import 'chart.piecelabel.js';

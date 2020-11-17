@@ -35,12 +35,12 @@ class WelcomePage extends Component {
     getCounts_AgeGender_OutMovement = () => {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.pharmacy_movement_out.map(move => {
-            if (move.movement_type == 1) {
-                var indEx = this.props.examination.findIndex(exam => (exam.prescrition_id == move.prescrition_id));
-                var indVisit = this.props.visits.findIndex(visit => (visit.visit_id == this.props.examination[indEx].visit_id));
-                var index = this.props.patients.findIndex(patient => (patient.id == this.props.visits[indVisit].person_id));
+            if (move.movement_type === 1) {
+                var indEx = this.props.examination.findIndex(exam => (exam.prescrition_id === move.prescrition_id));
+                var indVisit = this.props.visits.findIndex(visit => (visit.visit_id === this.props.examination[indEx].visit_id));
+                var index = this.props.patients.findIndex(patient => (patient.id === this.props.visits[indVisit].person_id));
                 var patient = this.props.patients[index];
-                if (index != -1) {
+                if (index !== -1) {
                     if (patient.gender === '0') {
                         if (patient.age < 5)
                             data[0][0]++;
@@ -159,7 +159,7 @@ class WelcomePage extends Component {
                 <div className="welcome-top ">
                     <Calendar className="calendar d-block col-12 col-lg-4" />
                     <div className="welcome-speech d-block col-12 col-lg-8">
-                        <img src={welcomeImage} className="welcomeImage" />
+                        <img src={welcomeImage} className="welcomeImage" alt=""/>
                         <div className="title">
                             Welcome Back
                         </div>

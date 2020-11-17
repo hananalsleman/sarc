@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { Field, ErrorMessage, Formik } from 'formik';
-import * as Yup from 'yup';
 import { connect } from 'react-redux';
 
 class AddOutMovement extends Component {
@@ -30,7 +29,7 @@ class AddOutMovement extends Component {
     }
     addMove = (e) => {
         e.preventDefault();
-        if (this.state.selectedMedicines.length == 0) {
+        if (this.state.selectedMedicines.length === 0) {
             this.setState({
                 error: 'لا يوجد ادوبة محددة للاخراج '
             })
@@ -38,7 +37,7 @@ class AddOutMovement extends Component {
             document.getElementById("form-addMove").reset();
             var newMove = {
                 ...this.state.newMove,
-                prescrition_id: (this.state.newMove.prescrition_id != '' ? parseInt(this.state.newMove.prescrition_id) : ''),
+                prescrition_id: (this.state.newMove.prescrition_id !== '' ? parseInt(this.state.newMove.prescrition_id) : ''),
                 movement_type: parseInt(this.state.newMove.movement_type)
             }
             this.props.addMove(newMove, this.state.selectedMedicines);
@@ -80,12 +79,12 @@ class AddOutMovement extends Component {
         })
     }
     getPharamcyStore = (medicine_id, shipment_id) => {
-        var index = this.props.pharmacy_stock.findIndex(medicine => medicine.medicine_id == parseInt(medicine_id) && medicine.shipment_id == shipment_id);
+        var index = this.props.pharmacy_stock.findIndex(medicine => medicine.medicine_id === parseInt(medicine_id) && medicine.shipment_id === shipment_id);
         return this.props.pharmacy_stock[index];
     }
     changeValMed = (e) => {
 
-        if (e.target.name == 'medicine') {
+        if (e.target.name === 'medicine') {
             console.log(e.target.value);
             var med = e.target.value.split(',')[0];
             var ship = e.target.value.split(',')[1];
@@ -110,23 +109,12 @@ class AddOutMovement extends Component {
         }
     }
     getMedicine = (medicine_id) => {
-        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id == parseInt(medicine_id));
+        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id === parseInt(medicine_id));
         return this.props.medicines[index];
     }
     getShipment = (id) => {
-        var index = this.props.shipment.findIndex(shipment => shipment.shipment_id == parseInt(id));
+        var index = this.props.shipment.findIndex(shipment => shipment.shipment_id === parseInt(id));
         return this.props.shipment[index];
-    }
-    schema = () => {
-        const schema = Yup.object({
-            firstName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            lastName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            fatherName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            motherName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            nationalNumber: Yup.number().test('len', 'يجب ان يكون الرقم مؤلف من 11', val => val > 0 ? val.toString().length === 10 : true),
-            phone: Yup.number().test('len', 'يجب ان يكون الرقم مؤلف من 10', val => val > 0 ? val.toString().length === 7 : true)
-        });
-        return schema;
     }
     form = (props) => {
         return (
@@ -253,7 +241,6 @@ class AddOutMovement extends Component {
                                 }}
                                 onSubmit={this.addShip}
                                 render={this.form}
-                                validationSchema={this.schema()}
                             />
                         </div>
                     </div>
@@ -276,99 +263,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(AddOutMovement);
-
-
-/*
-
-<div className="AddOutMovement   win" style={{ display: 'block'}} >
-                <div className="win-container center">
-                    <div className="title-bar">
-                        <label className="win-title">إخراج أدوية</label>
-                        <button onClick={props.toggleDisplay} ><i className="fa fa-remove"></i></button>
-                    </div>
-                    <div className="win-body">
-                        <form className="form-content" id="form-addMove">
-                            <div className="cols-container">
-                                <div className="col">
-                                    <div className="field"><label>نوع الاخراج</label>
-                                        <select onChange={this.changeValMove} name="movement_type" >
-                                            <option>نوع الاخراج</option>
-                                            {
-                                                this.props.movement_out_types.map( (medicine,index) =>
-                                                    <option key={index} value={index} >{this.props.movement_out_types[index]}</option>
-                                                )
-                                            }
-                                        </select>
-                                    </div><br />
-                                </div>
-                                <div className="col">
-                                    <div className="field"><label>تاريخ الإخراج</label><input  name="movement_date" defaultValue={this.getTodayDate()} onChange={this.changeValMove} type="date" /></div><br />
-                                </div>
-                                <div className="col">
-                                    <div className="field"><label> رقم الوصفة</label><input  name="prescrition_id" onChange={this.changeValMove} type="text" /></div><br />
-                                </div>
-                            </div>
-                            <div className="outed-medicine">
-
-                                <label className="title">الأدوية المخرجة</label>
-                                <table className="medicine-table">
-                                    <thead>
-                                        <tr>
-                                            <th>اسم الدواء</th>
-                                            <th> كود</th>
-                                            <th> تاريخ الشحن</th>
-                                            <th>الكمية المتوفرة</th>
-                                            <th>الكمية المخرجة</th>
-                                            <th> - </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            this.state.selectedMedicines.length > 0 ?
-                                            this.state.selectedMedicines.map( (medicine,index) =>
-                                                <tr key={index}>
-                                                    <td>{(this.getMedicine(medicine.medicine_id)).medicine_name}</td>
-                                                    <td>{(this.getMedicine(medicine.medicine_id)).code}</td>
-                                                    <td>{(this.getShipment(medicine.shipment_id)).shipment_date}</td>
-                                                    <td>{(this.getPharamcyStore(medicine.medicine_id,medicine.shipment_id)).current_quantity}</td>
-                                                    <td>{medicine.quantity}</td>
-                                                    <td><i onClick={ () => this.delMed(index)} className="fa fa-remove"></i></td>
-                                                </tr>
-                                             ):<tr >
-                                                    <td colSpan="6" className="empty">لا يوجد ادوية محددة</td>
-                                                </tr>
-                                        }
-
-                                    </tbody>
-                                </table>
-                                <div className="shipMedicine" id="form-addMed">
-                                    <select onChange={this.changeValMed}  name="medicine" className="outedMedicine" >
-                                        <option>اسم الدواء</option>
-                                        {
-                                            this.props.pharmacy_stock.map( (medicine,index) =>
-                                                (medicine.current_quantity > 0 ?
-                                                <option key={index} value={''+medicine.medicine_id+','+medicine.shipment_id} >
-                                                   {(this.getMedicine(medicine.medicine_id)).medicine_name}
-                                                   تاريخ الشحن {(this.getShipment(medicine.shipment_id)).shipment_date}
-                                                </option>
-                                                : null )
-                                                )
-                                        }
-                                    </select>
-                                    <input id="quantity" name="quantity" max={this.state.maxQuantity} onChange={this.changeValMed} type="number" placeholder="الكمية"/>
-                                    <button onClick={ this.addMed }>اضافة دواء</button>
-                                    <div className="error" style={{width:'50%',marginTop:'10px'}}><span>{this.state.error}</span></div>
-                                </div>
-                            </div>
-                            <div className="choices-btns">
-                                <button onClick={ this.addMove } className="btn save">حفظ</button>
-                                <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        )
-
-*/

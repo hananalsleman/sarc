@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
 import { Field, ErrorMessage, Formik } from 'formik';
-import * as Yup from 'yup';
 class EditOutMovement extends Component {
 
     getId = () => {
@@ -45,7 +42,7 @@ class EditOutMovement extends Component {
     }
     changeValMed = (e) => {
 
-        if (e.target.name == 'medicine') {
+        if (e.target.name === 'medicine') {
             this.setState({
                 newMed: {
                     ...this.state.newMed,
@@ -64,16 +61,16 @@ class EditOutMovement extends Component {
         }
     }
     getMedicine = (medicine_id) => {
-        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id == parseInt(medicine_id));
+        var index = this.props.medicines.findIndex(medicine => medicine.medicine_id === parseInt(medicine_id));
         return this.props.medicines[index];
     }
     getShipment = (id) => {
-        var index = this.props.shipment.findIndex(shipment => shipment.shipment_id == parseInt(id));
+        var index = this.props.shipment.findIndex(shipment => shipment.shipment_id === parseInt(id));
         return this.props.shipment[index];
     }
     getPharamcyStore = (medicine_id, shipment_id) => {
-        var index = this.props.pharmacy_stock.findIndex(medicine => medicine.medicine_id == parseInt(medicine_id) && medicine.shipment_id == shipment_id);
-        if (index == -1) return '';
+        var index = this.props.pharmacy_stock.findIndex(medicine => medicine.medicine_id === parseInt(medicine_id) && medicine.shipment_id === shipment_id);
+        if (index === -1) return '';
         return this.props.pharmacy_stock[index].current_quantity;
     }
 
@@ -84,17 +81,6 @@ class EditOutMovement extends Component {
                 selectedMedicines: this.getOutMedicine(nextProps.move.movement_id),
             });
         }
-    }
-    schema = () => {
-        const schema = Yup.object({
-            firstName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            lastName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            fatherName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            motherName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            nationalNumber: Yup.number().test('len', 'يجب ان يكون الرقم مؤلف من 11', val => val > 0 ? val.toString().length === 10 : true),
-            phone: Yup.number().test('len', 'يجب ان يكون الرقم مؤلف من 10', val => val > 0 ? val.toString().length === 7 : true)
-        });
-        return schema;
     }
     form = (props) => {
         return (
@@ -224,7 +210,6 @@ class EditOutMovement extends Component {
                                 }}
                                 onSubmit={this.addShip}
                                 render={this.form}
-                                validationSchema={this.schema()}
                             />
                         </div>
                     </div>

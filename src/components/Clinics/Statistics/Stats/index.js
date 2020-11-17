@@ -42,9 +42,9 @@ function Stats(props) {
                 <div className="stat-text">
                     <h3>{
                         props.patients.filter(item => (parseInt((item.registerdate).slice(5, 7)) === parseInt((new Date).getMonth() + 1) &&
-                            parseInt((item.registerdate).slice(0, 4)) == parseInt((new Date).getFullYear()))
-                            && ((props.min != '') ? Date.parse(item.registerdate) > props.min : true)
-                            && ((props.max != '') ? Date.parse(item.registerdate) < props.max : true)).length}</h3>
+                            parseInt((item.registerdate).slice(0, 4)) === parseInt((new Date).getFullYear()))
+                            && ((props.min !== '') ? Date.parse(item.registerdate) > props.min : true)
+                            && ((props.max !== '') ? Date.parse(item.registerdate) < props.max : true)).length}</h3>
                     <h5>مريض جديد</h5>
                 </div>
             </div>

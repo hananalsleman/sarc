@@ -19,7 +19,7 @@ class Statistics extends Component {
     }
     editDate = (e) => {
         this.setState({
-            [e.target.name]: e.target.value != '' ? Date.parse(e.target.value) : '',
+            [e.target.name]: e.target.value !== '' ? Date.parse(e.target.value) : '',
         });
 
     }
@@ -27,10 +27,10 @@ class Statistics extends Component {
     getCounts_AgeGender_Patients = () => {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.visits.map(visit => {
-            var index = this.props.patients.findIndex(patient => (patient.id == visit.person_id &&
-                (this.state.minDate != '' ? Date.parse(visit.visit_date) > this.state.minDate : true) &&
-                (this.state.maxDate != '' ? Date.parse(visit.visit_date) < this.state.maxDate : true)));
-            if (index != -1) {
+            var index = this.props.patients.findIndex(patient => (patient.id === visit.person_id &&
+                (this.state.minDate !== '' ? Date.parse(visit.visit_date) > this.state.minDate : true) &&
+                (this.state.maxDate !== '' ? Date.parse(visit.visit_date) < this.state.maxDate : true)));
+            if (index !== -1) {
                 var patient = this.props.patients[index];
                 if (patient.gender === '0') {
                     if (patient.age < 5)
@@ -61,10 +61,10 @@ class Statistics extends Component {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.visits.map(visit => {
             var b = true;
-            if (this.state.minDate != '' && Date.parse(visit.visit_date) < this.state.minDate) {
+            if (this.state.minDate !== '' && Date.parse(visit.visit_date) < this.state.minDate) {
                 b = false;
             }
-            if (this.state.maxDate != '' && Date.parse(visit.visit_date) > (this.state.maxDate))
+            if (this.state.maxDate !== '' && Date.parse(visit.visit_date) > (this.state.maxDate))
                 b = false;
             if (b) {
                 var index = this.props.patients.findIndex(x => x.id === parseInt(visit.person_id));
@@ -98,7 +98,7 @@ class Statistics extends Component {
         const data = [[0, 0, 0, 0], [0, 0, 0, 0]];
         this.props.patients.map(patient => {
 
-            if ((this.state.minDate != '' ? Date.parse(patient.registerdate) > this.state.minDate : true) && (this.state.maxDate != '' ? Date.parse(patient.registerdate) < this.state.maxDate : true)) {
+            if ((this.state.minDate !== '' ? Date.parse(patient.registerdate) > this.state.minDate : true) && (this.state.maxDate !== '' ? Date.parse(patient.registerdate) < this.state.maxDate : true)) {
                 if (patient.gender === '0') {
                     if (patient.age < 5)
                         data[0][0]++;
@@ -137,8 +137,8 @@ class Statistics extends Component {
             var clinicId = parseInt(this.props.doctors[doctorIndex].clinic_id);
             var gender = parseInt(patient.gender);
             var age = parseInt(patient.age);
-            if ((this.state.minDate != '' ? Date.parse(visit.visit_date) > this.state.minDate : true) &&
-                (this.state.maxDate != '' ? Date.parse(visit.visit_date) < this.state.maxDate : true)) {
+            if ((this.state.minDate !== '' ? Date.parse(visit.visit_date) > this.state.minDate : true) &&
+                (this.state.maxDate !== '' ? Date.parse(visit.visit_date) < this.state.maxDate : true)) {
                 if (age < 5)
                     data[gender][0][clinicId - 1]++;
                 else if (age < 18)
@@ -147,9 +147,7 @@ class Statistics extends Component {
                     data[gender][2][clinicId - 1]++;
                 else
                     data[gender][3][clinicId - 1]++;
-
             }
-
         });
         return data;
 

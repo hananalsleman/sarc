@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, ErrorMessage, Formik } from 'formik';
-import * as Yup from 'yup';
 
 class EditExam extends Component {
 
@@ -26,7 +25,7 @@ class EditExam extends Component {
         return this.props.clinics[clinicInd];
     }
     getDiseases = (id) => {
-        var diseases = this.props.diagnose.filter(diagnose => diagnose.examination_id == id);
+        var diseases = this.props.diagnose.filter(diagnose => diagnose.examination_id === id);
         var result = diseases.map(diagnose => {
             return diagnose.disease_id
         });
@@ -36,9 +35,9 @@ class EditExam extends Component {
         selectedDiseases: this.getDiseases(this.props.examination.id),
         exam: {
             ...this.props.examination,
-            patientId: this.props.examination.person_id != '' ? this.getVisit(this.props.examination.visit_id).person_id : '',
-            patientName: this.props.examination.person_id != '' ? this.getPatientName(this.props.examination.visit_id) : '',
-            clinic_id: this.props.examination.person_id != '' ? this.getClinic(this.props.examination.doctor_id).clinic_id : '',
+            patientId: this.props.examination.person_id !== '' ? this.getVisit(this.props.examination.visit_id).person_id : '',
+            patientName: this.props.examination.person_id !== '' ? this.getPatientName(this.props.examination.visit_id) : '',
+            clinic_id: this.props.examination.person_id !== '' ? this.getClinic(this.props.examination.doctor_id).clinic_id : '',
             examdate: this.getVisit(this.props.examination.visit_id).visit_date
         },
         doctors: this.props.doctors
@@ -49,8 +48,8 @@ class EditExam extends Component {
         this.props.editExam(this.state.exam, this.state.selectedDiseases);
     }
     changeVal = (e) => {
-        if (e.target.name == "clinic_id") {
-            var doctors = this.props.doctors.filter(doctor => doctor.clinic_id == e.target.value)
+        if (e.target.name === "clinic_id") {
+            var doctors = this.props.doctors.filter(doctor => doctor.clinic_id === e.target.value)
             this.setState({
                 doctors,
                 exam: {
@@ -71,9 +70,9 @@ class EditExam extends Component {
     addDisease = (e) => {
         var diseases = this.state.selectedDiseases;
         diseases.push(parseInt(e.target.value));
-        var diseases = Array.from(new Set(diseases));
+        var set_diseases = Array.from(new Set(diseases));
         this.setState({
-            selectedDiseases: diseases
+            selectedDiseases: set_diseases
         })
     }
     deleteDisease = (id) => {
@@ -103,17 +102,6 @@ class EditExam extends Component {
                 }
             });
         }
-    }
-    schema = () => {
-        const schema = Yup.object({
-            firstName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            lastName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            fatherName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            motherName: Yup.string().max(15, 'لا يجب ان يتجاوز 15 حرف'),
-            phone: Yup.number().test('len', 'يجب ان يكون الرقم مؤلف من 10', val => val > 0 ? val.toString().length === 7 : true),
-            nationalNumber: Yup.number().test('len', 'يجب ان يكون الرقم مؤلف من 11', val => val > 0 ? val.toString().length === 10 : true)
-        });
-        return schema;
     }
     form = (props) => {
         return (
@@ -178,7 +166,7 @@ class EditExam extends Component {
                 </div>
                 <div className="choices-btns">
                     <button type="submit" className="btn save">حفظ</button>
-                    <span className="btn cancel" onClick={props.toggleDisplay} data-dismiss="modal" aria-label="Close">إلغاء</span>
+                    <span className="btn cancel" data-dismiss="modal" aria-label="Close">إلغاء</span>
                 </div>
             </form>
         )
@@ -187,14 +175,13 @@ class EditExam extends Component {
     render() {
         const props = this.props;
         var examination = this.state.exam;
-        var selectedDiseases = this.state.selectedDiseases;
         return (
             <div className="modal win" tabIndex="-1" role="dialog" id="editExamWin" aria-labelledby="addPatientWinTitle" aria-hidden="true">
                 <div className="modal-dialog win-content" role="document">
                     <div className="modal-content">
                         <div className="modal-header title-bar">
                             <h5 className="modal-title win-title">تعديل مريض</h5>
-                            <button type="button" onClick={props.toggleDisplay} className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -212,7 +199,6 @@ class EditExam extends Component {
                                 }}
                                 onSubmit={this.editExam}
                                 render={this.form}
-                                validationSchema={this.schema()}
                             />
                         </div>
                     </div>
@@ -237,79 +223,3 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps, null)(EditExam);
-
-/*
-
- <div className="addpatient win" style={{ display: props.display }} >
-                    <div className="win-container center">
-
-                        <div className="title-bar">
-                            <label className="win-title">تعديل بيانات معاينة</label>
-                            <button onClick={props.toggleDisplay} ><i className="fa fa-remove"></i></button>
-                        </div>
-
-                        <div className="win-body">
-
-                            <form className="form-content">
-                                <div className="cols-container">
-                                    <div className="col">
-                                        <div className="field"><label>رقم المريض</label><input  name="patientId" defaultValue={examination.patientId} disabled type="text" /></div><br />
-                                        <div className="field"><label>اسم المريض</label><input  name="patientName" defaultValue={examination.patientName} disabled type="text" /></div><br />
-                                        <div className="field"><label> تاريخ المعاينة</label><input  name="observdate" defaultValue={examination.examdate} disabled type="date" /></div>
-                                        <div className="field"><label>العيادة</label>
-                                            <select defaultValue={examination.clinic_id} onChange={this.changeVal} name="clinic_id">
-                                                {this.props.clinics.map( clinic =>
-                                                <option value={clinic.clinic_id} key={clinic.clinic_id}>{clinic.clinic_name}</option>
-                                                )}
-                                            </select>
-                                        </div><br />
-                                        <div className="field"><label>الدكتور</label>
-                                            <select defaultValue={examination.doctor_id} onChange={this.changeVal} name="doctor_id">
-                                                {this.state.doctors.map( doctor =>
-                                                <option value={doctor.doctor_id} key={doctor.doctor_id}>{doctor.name}</option>
-                                                )}
-                                            </select>
-                                        </div><br />
-                                        <div className="field"><label>رقم الوصفة</label><input defaultValue={examination.prescrition_id} name="prescrition_id" onChange={this.changeVal} type="text" /></div><br />
-                                    </div>
-                                    <div className="col">
-
-                                        <div className="field"><label>التشخيص</label>
-                                            <select defaultValue={examination.patientId} onChange={this.addDisease} name="diagnose">
-                                                <option ></option>
-                                                {this.props.diseases.map( disease =>
-                                                <option value={disease.disease_id} key={disease.disease_id} >
-                                                    {disease.disease_name}
-                                                </option>
-                                                )}
-                                            </select>
-                                        </div><br />
-                                        <div className="list">
-
-                                        {this.state.selectedDiseases.length > 0
-                                                ? this.state.selectedDiseases.map( diseaseId =>
-                                                    <div className="row" key={diseaseId} >
-                                                        <label>{this.props.diseases[this.props.diseases.findIndex( x => x.disease_id === diseaseId)].disease_name}</label>
-                                                        <div onClick={()=> this.deleteDisease(diseaseId)}><i className="fa fa-remove"></i></div>
-                                                    </div>
-                                                ) : <div className="row empty"> لا يوجد امراض محددة </div>
-                                            }
-
-                                        </div>
-                                    </div>
-                                    <div className="col">
-                                        <div className="field"><label> ملاحظات</label><input defaultValue={examination.note} className="name" onChange={this.changeVal} name="note" type="text" /></div><br />
-                                    </div>
-                                </div>
-                                <div className="choices-btns">
-                                    <button onClick={ this.editExam } className="btn save">حفظ</button>
-                                    <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-
-
-*/

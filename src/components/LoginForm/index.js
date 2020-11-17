@@ -41,13 +41,13 @@ class LoginForm extends Component {
   }
 
   login = (value) => {
-    if (value.username == "hanan" && value.password == '123') {
+    if (value.username === "hanan" && value.password === '123') {
       this.setState({
         redirect: true,
         section: 1
       });
     }
-    else if (value.username == "salem" && value.password == '111') {
+    else if (value.username === "salem" && value.password === '111') {
       this.setState({
         redirect: true,
         section: 2

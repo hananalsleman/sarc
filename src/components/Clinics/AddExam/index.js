@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
-
 import { Field, ErrorMessage, Formik } from 'formik';
-import * as Yup from 'yup';
 
 
 class AddExam extends Component {
@@ -33,8 +29,8 @@ class AddExam extends Component {
     }
     addEx = (e) => {
         e.preventDefault();
-        if (document.getElementById("patientName").value == 'رقم المريض غير موجود' ||
-            document.getElementById("patientName").value == '') {
+        if (document.getElementById("patientName").value === 'رقم المريض غير موجود' ||
+            document.getElementById("patientName").value === '') {
             this.setState({
                 error: 'ادخل رقم مريض  صحيح'
             });
@@ -47,7 +43,7 @@ class AddExam extends Component {
     changeVal = (e) => {
         if (e.target.name === "patientId") {
             var patientInd = this.props.patients.findIndex(patient => patient.id === parseInt(e.target.value));
-            if (patientInd != -1) {
+            if (patientInd !== -1) {
                 var patientName = this.props.patients[patientInd].firstName + ' ' + this.props.patients[patientInd].fatherName + ' ' + this.props.patients[patientInd].lastName;
                 document.getElementById("patientName").value = patientName;
                 this.setState({
@@ -68,8 +64,8 @@ class AddExam extends Component {
             }
 
         }
-        if (e.target.name == "clinic_id") {
-            var doctors = this.props.doctors.filter(doctor => doctor.clinic_id == parseInt(e.target.value));
+        if (e.target.name === "clinic_id") {
+            var doctors = this.props.doctors.filter(doctor => doctor.clinic_id === parseInt(e.target.value));
             console.log(doctors[0].doctor_id);
             this.setState({
                 doctors,
@@ -92,9 +88,9 @@ class AddExam extends Component {
     addDisease = (e) => {
         var diseases = this.state.selectedDiseases;
         diseases.push(parseInt(e.target.value));
-        var diseases = Array.from(new Set(diseases));
+        var set_diseases = Array.from(new Set(diseases));
         this.setState({
-            selectedDiseases: diseases
+            selectedDiseases: set_diseases
         })
     }
     deleteDisease = (id) => {
@@ -110,11 +106,6 @@ class AddExam extends Component {
         id = parseInt(id);
         var diseaseIn = this.props.diseases.findIndex(x => x.disease_id === id);
         return this.props.diseases[diseaseIn];
-    }
-    schema = () => {
-        const schema = Yup.object({
-            });
-        return schema;
     }
     form = (props) => {
         return (
@@ -188,7 +179,6 @@ class AddExam extends Component {
     }
 
     render() {
-        const props = this.props;
         return (
 
             <div className="modal win" tabIndex="-1" role="dialog" id="addExamWin" aria-labelledby="addExamWinTitle" aria-hidden="true">
@@ -208,7 +198,6 @@ class AddExam extends Component {
                                     gender: '0', birthdate: '', birthplace: '', registerdate: this.getTodayDate(), nationality: '0', phone: '', nationalNumber: ''
                                 }}
                                 render={this.form}
-                                validationSchema={this.schema()}
                             />
                         </div>
                     </div>
@@ -219,7 +208,6 @@ class AddExam extends Component {
     }
 }
 
-
 function mapStateToProps(state) {
     return {
         diseases: state.diseases,
@@ -229,30 +217,4 @@ function mapStateToProps(state) {
     }
 }
 
-
 export default connect(mapStateToProps, null)(AddExam);
-
-
-/*
-
-            <div className="addpatient win" style={{ display: props.display }} >
-                <div className="win-container center">
-
-                    <div className="win-body">
-
-                        <form className="form-content" id="form-addExam">
-                            <div className="cols-container">
-                                sName="field"><label> ملاحظات</label><input className="name" onChange={this.changeVal} name="note" type="text" /></div><br />
-                                </div>
-                            </div>
-                            <div className="choices-btns">
-                                <button onClick={ this.addEx } className="btn save">حفظ</button>
-                                <span className="btn cancel" onClick={props.toggleDisplay}>إلغاء</span>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-*/

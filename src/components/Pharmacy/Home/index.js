@@ -56,14 +56,3 @@ const Home = () => {
 }
 
 export default Home;
-
-/*
-
-        <Fragment>
-            <div className="home">
-                <Tab />
-                <div className="area">
-                </div>
-            </div>
-        </Fragment>
-*/
