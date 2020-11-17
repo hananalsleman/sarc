@@ -158,13 +158,15 @@ class AddShipment extends Component {
                         </div>
                         <div className="col-12  col-lg-2 ">
                             <div className="field row">
-                                <Field className="col-12" id="production_date" name="production_date" type="date" />
+                                <Field className="col-12" id="production_date" name="production_date" type="text" placeholder="تاريخ الانتاج"
+                                    onFocus={(e) => {  e.target.type='date'; }} onBlur={(e) => {  e.target.type='text'; }}/> 
                                 <div className="error col-12"><ErrorMessage name="production_date" /></div>
                             </div>
                         </div>
                         <div className="col-12  col-lg-2 ">
                             <div className="field row">
-                                <Field className="col-12" id="expiration_date" name="expiration_date" type="date" />
+                                <Field className="col-12" id="expiration_date" name="expiration_date" type="text" placeholder="تاريخ الانتهاء"
+                                    onFocus={(e) => {  e.target.type='date'; }} onBlur={(e) => {  e.target.type='text'; }}/>
                                 <div className="error col-12"><ErrorMessage name="expiration_date" /></div>
                             </div>
                         </div>
@@ -209,7 +211,7 @@ class AddShipment extends Component {
                                 enableReinitialize
                                 initialValues={{
                                     shipment_id: this.getId(), shipment_date: this.getTodayDate(), shipment_source_id: '',
-                                    production_date: ' ', expiration_date: '', medicine_id: ''
+                                    production_date: '', expiration_date: '', medicine_id: ''
                                 }}
                                 onSubmit={this.addShip}
                                 render={this.form}
